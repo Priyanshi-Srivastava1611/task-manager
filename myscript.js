@@ -1,3 +1,4 @@
+'use strict'
 let colorBtn=document.querySelectorAll(".filter_color");
 let mainContainer=document.querySelector(".main_container");
 let body=document.body;
@@ -72,12 +73,12 @@ function handleModal(modal_container){
 }
 function createTask(color,task,flag,id){
     let taskContainer=document.createElement("div");
-    /*let uifn=new ShortUniqueId();
-    let uid = id || uifn();*/
+    let uid=new ShortUniqueId();
+    /*let uid = id || uifn();*/
     taskContainer.setAttribute("class", "task_container");
     taskContainer.innerHTML = `<div class="task_filter ${color}"></div>
     <div class="task_desc_container">
-        <h3 class="uid">example</h3>
+        <h3 class="uid">${uid()}</h3>
         <div class="task_desc" contenteditable="true" >${task}</div>
     </div>
 </div >`;
@@ -91,8 +92,8 @@ let taskFilter=taskContainer.querySelector(".task_filter");
     localStorage.setItem("allTask", finalArr);
 }*/
 taskFilter.addEventListener("click",changeColor);
-/*taskContainer.addEventListener("click",deleteTask);
-let taskDesc = taskContainer.querySelector(".task_desc");
+taskContainer.addEventListener("click",deleteTask);
+/*let taskDesc = taskContainer.querySelector(".task_desc");
 taskDesc.addEventListener("keypress", editTask);*/
 }
 function changeColor(e){
@@ -119,7 +120,7 @@ function deleteTask(e) {
     let taskContainer = e.currentTarget;
     if (deleteState) {
         // local storage search -> remove
-        let uidElem = taskContainer.querySelector(".uid");
+        /*let uidElem = taskContainer.querySelector(".uid");
         let uid = uidElem.innerText.split("#")[1];
         for (let i = 0; i < taskArr.length; i++) {
             let { id } = taskArr[i];
@@ -127,13 +128,13 @@ function deleteTask(e) {
             if (id == uid) {
                 taskArr.splice(i,1);
                 let finalTaskArr = JSON.stringify(taskArr);
-                localStorage.setItem("allTask", finalTaskArr);
+                localStorage.setItem("allTask", finalTaskArr);*/
                 taskContainer.remove();
-                break;
+                //break;
             }
         }
-    }
-}
+    
+
 function editTask(e) {
     let taskDesc = e.currentTarget;
     let uidElem = taskDesc.parentNode.children[0];
