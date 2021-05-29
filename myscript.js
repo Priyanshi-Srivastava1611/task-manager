@@ -23,10 +23,12 @@ for(let i=0;i<colorBtn.length;i++){
 }
 plusBtn.addEventListener("click", createModal);
 crossBtn.addEventListener("click",setDeleteState);
-function createModal(){
+function createModal()
+{
         //check if modal container not present alsready then first create
         let modalContainer=document.querySelector(".modal_container")
-        if (modalContainer==null){
+        if (modalContainer==null)
+        {
             //create modal
          let modalContainer  =document.createElement("div");
          modalContainer.setAttribute("class","modal_container");
